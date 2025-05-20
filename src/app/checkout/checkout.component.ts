@@ -43,7 +43,7 @@ export class CheckoutComponent implements OnInit {
   
  loadValoresPlanos(){
  
-  this.http.get<any>(`http://192.168.159.1:8080/planos/${this.formData.planoSelecionado}`).subscribe((res)=> {
+  this.http.get<any>(`https://lovelink-frontenddeploy.vercel.app/planos/${this.formData.planoSelecionado}`).subscribe((res)=> {
     this.valorPlanoSelecionado = res.preco;
     this.planoSelecionado = res.nome;
 
@@ -71,7 +71,7 @@ export class CheckoutComponent implements OnInit {
   registrarPagina(){
     console.log(this.formData)
   this.carregandoRegistro = true;
-  this.http.post<Pagina>('http://localhost:8080/paginas', this.formData)
+  this.http.post<Pagina>('https://lovelink-backend-deploy.onrender.com/paginas', this.formData)
     .subscribe((res) => {
       console.log("pagina registrada com sucesso"+res)
       this.registroCompleto = true;
@@ -94,7 +94,7 @@ cardData = {
 
 pagarCartao() {
     this.carregandoRegistro = true;
-
+    this.registrarPagina();
     const cardPaymentDTO = {
       transactionAmount: this.valorPlanoSelecionado,
       description: "Página Personalizada LoveLink",

@@ -222,7 +222,7 @@ export class CadastrarPaginaComponent implements OnInit {
 
  loadValoresPlanos(){
  
-  this.http.get<any[]>('http://192.168.159.1:8080/planos').subscribe((res)=> {
+  this.http.get<any[]>('https://lovelink-backend-deploy.onrender.com/planos').subscribe((res)=> {
     this.planos = res
     for(let i=0; i < this.planos.length; i++){
       if(this.planos[i].nome === "Anual"){
@@ -382,7 +382,7 @@ validaEmail(email : string){
   }
 
      this.carregandoEnvio = true;
-    this.http.post('http://192.168.159.1:8080/api/confirmacao-email/enviar-codigo', { email: this.form.email}).subscribe({
+    this.http.post('https://lovelink-backend-deploy.onrender.com/enviar-codigo', { email: this.form.email}).subscribe({
       next: response => {
        this.emailEnviado = true;
         this.codigo = ['', '', '', '', '', ''];
@@ -404,7 +404,7 @@ validaEmail(email : string){
  verificarCodigo() {
   const codigoDigitado = this.codigo.join('');
   console.log(codigoDigitado)
-  this.http.post('http://localhost:8080/api/confirmacao-email/validar-codigo', { email: this.form.email, codigo: codigoDigitado })
+  this.http.post('https://lovelink-backend-deploy.onrender.com/validar-codigo', { email: this.form.email, codigo: codigoDigitado })
     .subscribe(() => {
       this.emailConfirmado = true;
       clearInterval(this.interval);
@@ -509,7 +509,7 @@ startReenviarTimer() {
     localStorage.setItem('sessionId', sessionId);
     localStorage.setItem('dadosCadastro_' + sessionId, JSON.stringify(formStorage));
     setTimeout(() => {
-    window.location.href = `http://accounts.spotify.com/authorize?response_type=code&client_id=${this.clientId}&scope=app-remote-control streaming&redirect_uri=http://127.0.0.1:4200/criarCarta`;
+    window.location.href = `http://accounts.spotify.com/authorize?response_type=code&client_id=${this.clientId}&scope=app-remote-control streaming&redirect_uri=https://lovelink-frontenddeploy.vercel.app/criarCarta`;
   }, 300)
   }
 

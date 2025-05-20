@@ -23,6 +23,6 @@ export class MercadoPagoServiceService {
     });
   }
   payWithCard(cardPaymentDTO: any) {
-    return this.http.post('http://localhost:8080/api/payment/card', cardPaymentDTO);
+    return this.http.post('https://lovelink-backend-deploy.onrender.com/api/payment/card', cardPaymentDTO);
   }
 }

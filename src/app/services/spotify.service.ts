@@ -12,7 +12,7 @@ export class SpotifyService {
       let body ={
         grant_type: "authorization_code",
         code,
-        redirect_uri: "http://127.0.0.1:4200/criarCarta"
+        redirect_uri: "https://lovelink-frontenddeploy.vercel.app//criarCarta"
       }
       const basicAuth = btoa(`${this.clientId}:${this.clientSecret}`);
     
