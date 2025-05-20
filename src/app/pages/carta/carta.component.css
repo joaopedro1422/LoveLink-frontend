@@ -1,0 +1,475 @@
+h2 {
+    margin: 0;
+    color: #f5dcdc;
+    text-shadow: 1px 2px 1px rgba(138, 0, 0, 0.842);
+    font-family: "Italianno", cursive;
+    font-weight: 300;
+    font-size:  46px;
+}
+h3 {
+    font-family: "Italianno", cursive;
+    font-weight: 400;
+    font-size:  44px;
+    margin: 0;
+    color: rgb(255, 20, 20); 
+    margin-top: 20px;
+}
+p {
+ font-family: "Roboto Slab", serif;
+    white-space: normal;
+    font-weight: 200;
+    padding: 0 22px;
+    color: rgb(255, 242, 242);
+    font-size: 15px
+}
+.item {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 50vh;
+    width: 38vh;
+    border-radius: 10px;
+    box-shadow: 0px 1px 5px rgba(216, 0, 0, 0.63);
+    transition: all 0.5s ease-in-out;
+  }
+span{
+     font-family: "Roboto Slab", serif;
+    color: #e1b3b3;
+}
+@media screen and (min-width: 1024px) {
+    .body-carta {
+      padding-left: 30%;
+      padding-right: 30%;
+      max-width: 700px;
+    }
+  }
+
+  .btn-add{
+    max-height: 38px;
+    max-width: 38px;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+.body-carta{
+    
+    
+   
+    height: 105vw;
+     width: 100%;  
+  
+    z-index: -1;
+}
+.espaco{
+    height: 30px;;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.data-base{
+    font-size: 1.2em;
+}
+.container-data {
+    background-color: #00000000;
+    border-radius: 10px;
+   
+    margin: auto;
+    padding: 8px;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+
+   
+  }
+
+  @property --opacity {
+    syntax: "<number>";
+    initial-value: 0.5;
+    inherits: false;
+  }
+  
+  /* Propriedade customizada para o ângulo */
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  
+  /* Animação para alternar a opacidade do fundo */
+  @keyframes opacityChange {
+    to {
+      --opacity: 1;
+    }
+  }
+  
+  /* Animação para rotacionar o gradiente na borda */
+  @keyframes rotate {
+    to {
+      --angle: 360deg;
+    }
+  }
+
+
+.video {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    max-width: 95%;
+    background: black;
+    border: 1px solid gray;
+    border-radius: 6px;
+    margin: 0 auto;
+}
+
+.video iframe {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100%;
+    height: 100%;
+}
+.line{
+    height: 2px;
+    background-color: #e1b3b3;
+    width: 200px;
+    margin-top: -8px;
+}
+.line-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -15px;
+  }
+
+.line2{
+   height: 1px;
+    background-color: #e1b3b3;
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+}
+ .heart-dois {
+    background-color: #1a0000; /* Cor do fundo da página, para "apagar" a linha atrás do coração */
+    z-index: 2;
+    padding: 0 10px;
+    color: #e2c3c3;
+    font-size: 18px;
+  }
+
+.container-gradient{
+    background: linear-gradient(to bottom, #3a0102 , #160101);
+    height: 3vh;
+}
+.container-contador{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.container-animation{
+    position: absolute;
+}
+
+@keyframes animate
+{
+    0%{
+        top: 0px;
+        opacity: 0.3;
+        scale: 1;
+    }
+    70%{
+        top: 600px;
+        opacity: 0.3;
+    
+    }
+    80%{
+        top: 700px;
+        opacity: 0.2;
+        scale: 1;
+    }
+    100%{
+        top: 800px;
+        opacity: 0.1;
+        scale: 0;
+    }
+}
+.heart{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    filter: drop-shadow(5px 5px 10px black) drop-shadow(0px 0px 2px red);
+    animation: animate 8s linear forwards;
+}
+.heart::before{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 25px;
+    background: #c50000;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transform-origin: bottom center;
+    rotate: -45deg;
+    z-index: 1000;
+}
+.heart::after{
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 15px;
+    bottom: 0;
+    background: #c50000;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transform-origin: bottom center;
+    rotate: 315deg;
+    z-index: 100000;
+}
+.container-titulo1{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    color: white;
+}
+.container-autor{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    color: white;
+}
+.container-Mensagem{
+    width: 100%;
+    display: flex;
+    
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    color: white;
+}
+.container-carrossel{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+}
+.container-Mensagem p {
+    margin-top: -3px;
+}
+.container-carrossel img {
+    height: 50vh;
+    width: 38vh;
+    border-radius: 13px;
+    box-shadow: 0px 1px 5px rgba(255, 0, 0, 0.63);
+    animation: spin-light 2s infinite linear; 
+
+}
+
+
+
+.container-album {
+    display: grid;
+    grid-template: max-content;
+    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px; /* Adicionar espaçamento interno */
+}
+.container-album img{
+    height: 79px;
+    width: 77px;
+    border-radius: 5px;
+}
+
+.icon{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.container-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+h5 {
+    margin-top: 0;
+}
+
+.spotify-player {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o player na página */
+    align-items: center;
+    margin: 2px auto; /* Espaçamento superior e inferior */
+    padding: 10px; /* Espaçamento interno */
+    padding-top: 14px;
+    border: 1px solid rgb(253, 84, 84);
+    background: linear-gradient(135deg, #0c0c0c00, #110e0e00); /* Gradiente com as cores do Spotify */
+    border-radius: 20px; /* Borda arredondada */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra elegante */
+    width: 85%;
+    max-width: 540px; /* Limita a largura */
+  }
+
+  /* Animação de hover para o container */
+  .spotify-player:hover {
+    
+    transition: all 0.3s ease-in-out;
+  }
+
+  .spotify-player iframe{
+    height: 100px;
+
+  }
+
+  .teste{
+    width: 100%;
+  }
+
+  footer{
+    border-top: 1px solid rgb(31, 0, 0);
+    height: 55px;
+    display: flex;
+    background-color: #9b000000 ;
+  }
+
+
+  
+  .container-footer1{
+    width: 100%;
+    height: 55px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+  }
+  .container-footer2{
+    width: 33%;
+    height: 55px;
+   
+
+  }
+
+  .container-footer1 img{
+    height: 30px;
+    width: min-content;
+    margin-top:9px
+  }
+  @media (min-width: 1024px) and (max-width: 1366px) {
+    .item {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 69vh;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0px 1px 5px rgba(216, 0, 0, 0.63);
+    transition: all 0.5s ease-in-out;
+  }
+  
+  
+}
+.body-desktop{
+  
+   background-image: url('/fundo1.png');
+  background-size: 54vh;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: center;
+  overflow-x: hidden;
+  min-height: 100vh;
+
+}
+@media screen and (min-width: 1024px) {
+    .body-desktop{
+      border: 1px solid rgb(170, 113, 113);
+      border-radius: 8px;
+    }
+  }
+dialog{
+  padding-top: 0;
+}
+.container-modal-adc{
+  top: 0;
+  width: 255px;;
+
+}
+.header-adc{
+      
+  background-color: rgb(233, 0, 0);
+  border-radius: 8px;
+  top: 0;
+}
+  
+.header-adc h1{
+  font-family: "Italianno", cursive;
+  font-size: 17px;
+}
+
+.container-input{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: start;
+}
+
+.container-input span{
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-input input,textarea{
+  border-radius: 5px;
+}
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+
+    text-align: center;
+    background-color: #4e46e500;
+    color: rgb(0, 0, 0);
+    border: 1px solid rgb(170, 170, 170);
+    border-radius: 8px;
+    cursor: pointer;
+ 
+  }
+  
+  input[type="file"] {
+    display: none;
+  }
+
+  .btn-adicionar{
+    width: 100%;
+    border: none;
+    background-color: rgb(230, 1, 1);
+    margin-top: 6px;
+    color: white;
+    font-weight: bold;
+    height: 30px;
+    border-radius: 5px;
+  }
+  .btn-fechar{
+    border: none;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  .container-imagemAlbum{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }

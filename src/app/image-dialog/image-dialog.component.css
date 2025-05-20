@@ -1,0 +1,52 @@
+img{
+    height: 315px;
+    width: 245px;
+}
+button{
+    width: 15px;
+}
+p{
+    color: rgb(187,
+    0, 0);
+    font-family: "Roboto Slab", serif;
+    white-space: normal; /* ou remova qualquer white-space: nowrap */
+    font-weight: 400 !important;
+    text-align: center;
+}
+
+.dialog-container{
+    z-index: 10000;
+    max-width: 265px;
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    background-color: red;
+    background-color: transparent;
+}
+.custom-fullscreen-dialog .cdk-overlay-pane {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important; /* Centraliza o dialog */
+  height: auto;
+  max-height: 80vh; /* Limita a altura */
+  width: 65vw;
+  z-index: 1000; /* Garante que o dialog fique por cima de outros elementos */
+  background-color: white; /* Fundo branco para o dialog */
+}
+
+.dark-backdrop {
+    background-color: rgba(0, 0, 0, 0.986) !important;
+  }
+  ::backdrop .cdk-overlay-backdrop.dark-backdrop {
+    pointer-events: auto;
+    background-color: rgba(0, 0, 0, 0.9) !important;
+  }
+
+  .mat-mdc-dialog-inner-container .mdc-dialog__container{
+
+    background-color: red;
+  }

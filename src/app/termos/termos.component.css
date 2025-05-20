@@ -1,0 +1,103 @@
+.body-info{
+    background-color: black;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.lineRow{
+    height: 3px;
+    width: 100%;
+    background-color: red;
+}
+
+.info-content{
+    padding: 20px;
+    color: white;
+}
+
+.info-content h2{
+    text-align: center;
+    font-size: 2.9rem;
+    margin-bottom: 7px;
+    font-weight: 500;
+}
+.paragrafo h3{
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.paragrafo p{
+    color: rgb(167, 167, 167);
+    margin-top: 5px;
+    font-size: 0.9rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .info-content{
+    max-width: 48% ;
+  }
+}
+
+.container-captacao{
+    margin-top: 50px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+}
+.container-captacao h1{
+    font-size: 1.7rem;
+}
+.container-captacao button{
+    background-color: red;
+    border: none;
+    color: white;
+    font-size: 0.9rem;
+    height: 45px;
+    font-weight: bold;
+    width: 200px;
+    border-radius: 6px;
+      animation: rotate 4s linear infinite;
+    z-index: 0;
+
+    --border-size: 1px;
+    border: var(--border-size) dotted transparent;
+    background-image: 
+    linear-gradient(to right, #ed3232, #82080f,#ed3232),
+    /* Camada da borda: gradiente giratório */
+    conic-gradient(from var(--angle), red, rgb(253, 25, 25), rgb(253, 44, 44), rgb(250, 51, 51), rgb(255, 255, 255), rgb(255, 86, 86), red);
+  
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+
+  /* Propriedade customizada para o ângulo */
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  
+  /* Animação para alternar a opacidade do fundo */
+  @keyframes opacityChange {
+    to {
+      --opacity: 1;
+    }
+  }
+  
+  /* Animação para rotacionar o gradiente na borda */
+  @keyframes rotate {
+    to {
+      --angle: 360deg;
+    }
+  }
+  
+

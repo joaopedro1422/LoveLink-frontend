@@ -1,0 +1,16 @@
+<div class="dialog-container" (click)="close()">
+
+        <ng-container *ngIf="imageUrl; else loading">
+            <img [src]="imageUrl" alt="Imagem detalhada" />
+          </ng-container>
+          <p>Nosso pedido de namoro.</p>
+          <span>14/03/2024</span>
+          <ng-template #loading>
+            <p>Carregando imagem...</p>
+          </ng-template>
+        
+         
+  
+    <!-- Enquanto a URL não estiver definida, pode mostrar um spinner ou mensagem -->
+   
+  </div>

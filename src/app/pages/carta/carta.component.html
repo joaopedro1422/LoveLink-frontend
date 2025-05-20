@@ -1,0 +1,139 @@
+
+<div class="body-carta" >
+   
+    <div class="body-desktop">
+     
+        <div class="container-animation">     </div>           
+              <dialog #modal>
+                <div class="container-modal-adc">
+                    <div class="header-adc">
+                        <h1 style =" font-weight: 500; color: white; text-align: center; font-size: 1.6rem">Nova Lembrança</h1>
+                    </div>
+                
+                    <div class="container-input" *ngIf="!fileSelected">
+                        <span>Selecione a imagem</span>
+                           <label class="custom-file-upload">
+                  
+                            <input type="file" (change)="onFileSelected($event)" />
+                            <i class="fa fa-image" style="margin-right: 8px;"></i>
+                            Clique para adicionar foto
+                            </label>
+                    </div>
+                    <img style="height: 70px; width: auto" [src]="fileSelected" alt="">
+                    <div class="container-input" style="margin-top: 5px;">
+                        <span>Data</span>
+                        <input type="date" [(ngModel)]="novaFoto.data" name="" id="">
+                    </div>
+                    <div class="container-input" [(ngModel)]="novaFoto.descricao" style="margin-top: 5px;">
+                        <span>Descriçao</span>
+                        <textarea name="" id=""></textarea>
+                    </div>    
+                    <button
+                    (click)="adicionarFotoAlbum();"
+                    class="btn-adicionar">Adicionar</button>
+                </div>
+                <button (click)="closeModal()"  class="btn-fechar">
+                    Fechar
+                </button>
+            </dialog>
+
+            <div class="container-titulo1">
+                <h2>{{cartaData.nomeCasal}}</h2>
+            </div>
+            <div class="container-image">
+                 <div  *ngIf="cartaData?.imagens?.length > 0"
+                class="item"
+                [style.backgroundImage]="
+                    'url(' + cartaData.imagens[indexImagemAtiva] + ')'
+                "
+                ></div>
+               <img
+                *ngFor="let imagem of cartaData.imagens"
+                [src]="imagem"
+                width="1"
+                height="1"
+                style="opacity: 0; position: fixed"
+                />
+            </div>        
+            <div class="container-titulo1">
+                <h3>{{cartaData.titulo}}</h3>         
+            </div>
+            <div class="container-Mensagem">
+                <p style="text-align: center;">{{cartaData.mensagem}}            
+                    </p>
+                <div class="container-autor">
+                    <span style="padding-right: 27px; color: #e1b3b3; font-size: 13px">- Com carinho, {{cartaData.autor}}.</span>
+                </div>
+            </div>     
+        <div class="espaco"></div>
+        <div class="espaco" *ngIf="cartaData.mensagem"> 
+            <div class="line-container">
+              <div class="line2"></div>
+              <div class="heart-dois">❤</div>
+            </div>
+          </div>
+        <div class="container-titulo1">
+            <h3>Nossa música</h3>
+        </div>
+        <div class="video" *ngIf="cartaData.videoId">
+             <iframe
+                width="560"
+                height="315"
+                [src]="safeMusicaUrl"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <div class="espaco"></div>
+        <div class="container-contador" *ngIf="cartaData.data">
+            <p><i class="fa-solid fa-hourglass-half" style="color: #f8caca"></i>  <span style= "color: rgb(255, 240, 240); font-size: 16px; font-family: 'Nunito Sans', sans-serif;"> Compartilhando momentos há: </span> <br> {{ tempoDecorrido }}</p>
+            <div class="container-data">
+                <span class="data-base">❤️ Desde {{cartaData.data | date:'dd/MM/yyyy'}} ❤️</span>
+            </div> 
+        </div>
+        <div class="espaco"></div>
+        <div class="container-titulo1" *ngIf="cartaData.videoId">
+            <h3>Nosso álbum</h3>
+            <div  class="container-album"  #albumContainer>
+                <div *ngFor="let card of cartaData.album" >
+                    <div class="container-imagemAlbum"  (click)="openImageDialog($event, card.url)">
+                        <img [src]="card.url" alt="">
+                        <h5 style="font-size: 7px;">{{ card.data | date:'dd/MM/yyyy' }}</h5>
+                    </div>
+                </div>       
+                <img src="adicionar1.png" (click)="showModal()" class="btn-add" alt="">     
+            </div>
+        </div>
+        
+        <div class="container-titulo1" *ngIf="safeUrls.length">
+            <h3 style="font-size: 32;">Músicas que me lembram você</h3>
+            <div class="spotify-player">
+                  <div *ngFor="let url of safeUrls" class="teste">
+                <iframe
+                    style="border-radius:12px"
+                    [src]="url"
+                    width="100%"
+                    height="352"
+                    frameBorder="0"
+                    allowfullscreen
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                ></iframe>
+                </div>
+              </div>
+        </div>
+        <div class="espaco"></div>
+        <div class="espaco"></div>
+       <footer>           
+            <div class="container-footer1" >
+                <img src="logoLoveLink.png" alt="">
+            </div>
+        </footer>
+        
+    </div>
+
+<div>
+
+    
+

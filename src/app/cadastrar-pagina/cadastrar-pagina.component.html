@@ -1,0 +1,349 @@
+<app-header></app-header>
+<div class="body-cadastrar">
+  <div class="left">
+    
+ 
+    <div class="step-indicator">
+        <div
+          class="step"
+          *ngFor="let s of steps; let i = index"
+          [class.active]="i === currentStep"
+          [class.completed]="i < currentStep"
+        >            
+           <!-- <img src="" alt=""> -->
+           <img [src]="s.icon" alt="" class="icon" />
+      
+        <div class="line" *ngIf="i < steps.length - 1"></div>
+        </div>
+      </div>
+      
+      
+      <div class="form-content">
+        <ng-container [ngSwitch]="currentStep">
+          <div *ngSwitchCase="0" style="width: 100%;">
+          <app-modal #modal="modal">
+             
+              <h1 style =" font-weight: 500; color: white; text-align: center; font-size: 1.6rem">Deseja continuar?</h1>
+              <p style ="text-align: center; margin-top: 4px; color: rgb(212, 212, 212)">
+                Percebemos que você já possui uma página em andamento. <br> Deseja continuar com ela ou criar uma nova página?
+              </p>
+                  <div class="container-buttons">
+                      <button
+                      (click)="setCriarNova(); modal.toggle();"
+                      class="btn-primario">Criar nova página</button>
+
+                  <button
+                   (click)="setContinuarPagina()"  class="btn-secundario">Continuar Página</button>
+                  </div>           
+            </app-modal>         
+            <!-- Etapa 1: Nome do casal -->
+             <h3>Nome do Casal</h3>
+             
+            <input class="campo" type="text" [(ngModel)]="form.nomeCasal" placeholder="Ex: 'Daniel e Karina'" />
+            <h3 style="margin-top: 20px">Seu nome Completo</h3>
+             
+            <input class="campo" type="text" [(ngModel)]="form.autor" placeholder="Autor" />
+            <h3 style="margin-top: 20px">Título da mensagem</h3>
+             
+            <input class="campo" type="text" [(ngModel)]="form.titulo" placeholder="Ex: 'Para o amor da minha vida'" />
+          </div>
+      
+          <div *ngSwitchCase="1" style="width: 100%;">
+            <!-- Etapa 2: Fotos -->
+            <h3 ><img style="height: 30px; width: auto" src="camerastep.png" alt="Buscar" />Fotos iniciais</h3>
+            <p>Escolha as fotos que serão destaque na sua página. Você pode adicionar até 4 fotos</p>
+            <div class="espaco"></div>
+            <label class="custom-file-upload">
+              <input type="file" multiple (change)="onFileSelected($event)" />
+              <i class="fa fa-image" style="margin-right: 8px;"></i>
+              Clique para adicionar fotos
+            </label>
+            <div style="display: flex;">
+              <div *ngFor="let img of form.imagens; let i = index" style="position: relative; margin: 10px;">
+                <img [src]="img" style="width: 50px; border-radius: 5px;" />
+                <button 
+                  (click)="removeImage(i)" 
+                  style="
+                    position: absolute;
+                    top: -5px;
+                    right: -5px;
+                    background: red;
+                    color: white;
+                    border: none;
+                    border-radius: 50%;
+                    width: 20px;
+                    height: 20px;
+                    cursor: pointer;
+                    font-size: 12px;
+                  ">
+                  ×
+                </button>
+              </div>
+            </div>                     
+          </div>      
+          <div *ngSwitchCase="2" style="width: 100%;">
+            <!-- Etapa 3: Música -->
+            <h3><img style="height: 30px; width: auto" src="mensagemstep.png" alt="Buscar" /> Mensagem especial</h3>
+             <p>Demonstre o seu amor em forma de palavras.</p>
+             <div class="espaco"></div>
+            <textarea 
+              class="campo" 
+              [(ngModel)]="form.mensagem" 
+              placeholder="Escreva uma mensagem para quem você ama"
+              rows="5"
+              style="width: 100%; height: 100px; padding: 15px; resize: vertical; border-radius: 8px;">
+            </textarea>
+            <!-- Campo de Data Bonito -->
+            <div style="margin-top: 20px;">
+              <h3 for="dataEspecial" style="color: white;font-weight: bold; display: block; margin-bottom: 8px;">
+                Data de início 💖
+              </h3>
+              <input 
+                id="dataEspecial"
+                type="date"
+                [(ngModel)]="form.data"
+                class="campo-data"
+              />
+            </div>
+          </div>
+      
+          <div *ngSwitchCase="3" style="width: 100%;">
+            <h3><img style="height: 30px; width: auto" src="musicastep.png" alt="Buscar" />Música</h3>
+            <p>Escolha uma música especial para ser exibida</p>
+          
+            <div class="search-container">
+              <input
+                type="text"
+                class="campo"
+                [(ngModel)]="searchQuery"
+                (keyup.enter)="searchYoutube()"
+                placeholder="Ex: Jorge e Mateus - Duas metades"
+              />
+              <button class="search-button" (click)="searchYoutube()">
+                <img src="busca.png" alt="Buscar" />
+              </button>
+            </div>
+          
+            <div *ngIf="youtubeResults.length > 0">
+              <div *ngFor="let video of youtubeResults" class="video-card">
+                
+                <div *ngIf="!selectedVideoId || selectedVideoId !== video.id.videoId" class="video-info">
+                  <img
+                    [src]="video.snippet.thumbnails.medium.url"
+                    [alt]="video.snippet.title"
+                    class="video-thumbnail"
+                  />
+                  
+                  <div class="video-details">
+                    <p class="video-title">{{ video.snippet.title }}</p>
+                    <button class="play-button" (click)="selectVideo(video.id.videoId)">
+                      <img src="botao-play.png" alt="Selecionar" />
+                    </button>
+                  </div>
+                </div>
+   
+              </div>
+            </div>
+          </div>
+      
+          <div *ngSwitchCase="4">
+            <h3><img style="height: 30px; width: auto" src="albumstep.png" alt="Buscar" />Álbum personalizado</h3>
+            <p style="font-size: 15px; color: rgb(255, 230, 230); font-family: 'Nunito Sans', sans-serif;">
+              Registre memórias com imagens, descrições e Datas.
+            </p>
+          
+            <p style="margin-top: 10px; font-size: 15px; color: rgb(252, 237, 237); font-family: 'Nunito Sans', sans-serif;">
+              O seu álbum foi preenchido com imagens genéricas apenas para que você visualize melhor a sua página!
+            </p>
+          
+            <p style="margin-top: 5px; font-size: 12px; font-style: italic; color: rgb(200, 180, 180); font-family: 'Nunito Sans', sans-serif;">
+              💡 Após a finalização, você poderá preencher o seu álbum adicionando imagens quantas vezes quiser :)
+            </p>
+          
+            <p style="margin-top: 15px; font-size: 13px; color: rgb(255, 210, 210); font-family: 'Nunito Sans', sans-serif;">
+              Pronto para continuar? Sua carta está quase finalizada! 💌
+            </p>
+         
+          </div>
+          <div *ngSwitchCase="5" class="container-email">
+             <h3> <img style="height: 30px; width: auto" src="spotify-white.png" alt="Buscar" /> Playlist Spotify</h3>
+            <p>Dedique uma playlist de músicas que te fazem lembrar da pessoa especial. Você poderá adicionar até 5 músicas</p>
+            <p *ngIf="!spotifyCode" style="margin-top: 10px; font-size: 13px; font-style: italic; color: rgb(218, 216, 216); font-family: 'Nunito Sans', sans-serif;">
+              💡 Clique no botão abaixo para permitir a busca de músicas utilizando o próprio Spotify.
+            </p>
+          <div>
+            <button *ngIf="!spotifyCode" class="spotify-btn" (click)="loginWithSpotify()">  <img src="spotify-black.png" alt="Buscar" />Conectar ao Spotify</button>
+            <!-- Preview da Playlist -->
+              <div class="playlist-preview" *ngIf="musicsPreview.length > 0">
+                <h4 style="color: white">Sua Playlist</h4>
+                <ul>
+                  <li *ngFor="let track of musicsPreview; let i = index">
+                    {{ track.name }} 
+                    <button class="remove-button" (click)="removeFromPlaylist(i)">✖</button>
+                  </li>
+                </ul>
+              </div>
+            <div class="search-container" *ngIf="spotifyCode">
+              <input
+                type="text"
+                class="campo spotify"
+                [(ngModel)]="searchSpotify"
+                (keyup.enter)="searchMusic()"
+                placeholder="Ex: Jorge e Mateus - Duas metades"
+              />
+              <button class="search-button spotify" (click)="searchMusic()">
+                <img src="busca-verde.png" alt="Buscar" />
+              </button>
+            </div>
+            <div >
+              <div class="search-results">
+                <div *ngFor="let track of searchResults" class="track-card">
+                  <div class="card-left">
+                    <img [src]="track.album.images[0]?.url" alt="Capa do álbum" class="track-image" />
+                    <div class="track-info">
+                      <h4 class="track-name">{{ track.name }}</h4>
+                      <p class="artist-name">{{ track.artists[0].name }}</p>
+                    </div>
+                  </div>
+                  <div class="card-right">
+                        <img src="spotify.png"  alt="Selecionar" />
+                        <button class="select-button" (click)="addToPlaylist(track)" > <img src="botao-play-ponta-de-seta.png" alt="Selecionar" /></button>
+                  </div>
+                  
+              
+                </div>
+              </div>
+            </div>
+          </div>
+           
+          </div>
+           <div *ngSwitchCase="6" class="container-email">
+            <h3>Quase lá...</h3>
+            <p>Confirme o email que será utilizado para receber o link da página e o QrCode de acesso.</p>
+
+            <!-- Campo de email -->
+            <div *ngIf="!emailEnviado" class="email-form">
+              <input [(ngModel)]="form.email" class="campo-email"   (ngModelChange)="validaEmail($event)" placeholder="Digite seu e-mail" [ngClass]="{'input-invalido': !emailValido}"  />
+              <div style="display: flex; width: 100%; justify-content: start">
+                <span style="color: red" *ngIf="!emailValido" >Email inválido</span>
+              </div>             
+              <button class="bnt-enviar" (click)="enviarCodigo()">  
+                <span *ngIf="!carregandoEnvio" style="color: white">Enviar código</span>
+                  <span *ngIf="carregandoEnvio">
+                  <span class="spinner"></span> Enviando...
+                </span>
+              </button>
+             
+            </div>
+
+            <!-- Mensagem após envio e inputs de código -->
+            <div *ngIf="emailEnviado && !emailConfirmado" class="verificacao-container">
+              <p>Um código foi enviado para <strong>{{ form.email }}</strong>.</p>
+
+              <div class="codigo-inputs">
+              <input
+                *ngFor="let item of codigoArray; let i = index"
+                maxlength="1"
+                [(ngModel)]="codigo[i]"
+                (input)="onInput(i)"
+                #codigoInput
+                class="codigo-box"
+                type="text"
+              />
+              </div>
+              <div style="display: flex; gap: 15px">
+                 <button class="btn-confirmaCodigo" (click)="verificarCodigo()">Confirmar</button>
+
+                <div class="reenviar-container">
+                  <button class="btn-reenviar" (click)="reenviarCodigo()" [disabled]="reenviarTimer > 0">
+                    Reenviar código {{ reenviarTimer > 0 ? '(' + reenviarTimer + 's)' : '' }}
+                  </button>
+                </div>
+              </div>             
+            </div>
+              <div *ngSwitchCase="8" class="container-email">
+                  <button (click)="realizarPagamento()">Finalizar Compra</button>
+              </div>
+            <!-- Mensagem de sucesso -->
+            <div *ngIf="emailConfirmado" class="email-confirmado">
+              <p><i class="fa fa-check-circle" style="color: #4CAF50; font-size: 21px;"></i>  Email confirmado com sucesso: <strong>{{ form.email }}</strong></p>
+       
+            </div>            
+          </div>
+          <div *ngSwitchCase="7" class="container-section">              
+              <h3 style="font-size: 26px">Plano de pagamento</h3>
+              <p style="margin-top: -12px">Escolha o plano ideal para a sua página!</p>
+              <div class="container-cards">              
+              <!-- Plano 1 -->
+              <div
+                class="card-planos"
+                [class.plano-selecionado]="planoSelecionado === 'vitalicio'"
+                (click)="selecionarPlano('Acesso-vitalicio')"
+              >
+                <h5>⭐ ACESSO VITALÍCIO</h5>
+                <div class="checks">
+                  <div class="division-check" *ngFor="let item of beneficios">
+                    <img src="check.png" alt="" />
+                    <span [innerHTML]="item"></span>
+                  </div>
+                </div>
+                <div class="valores">
+                  <span class="normal">R${{ valorAntigoPlanoVitalicio}}0</span>
+                  <span class="promocional">R${{ valorAtualPlanoVitalicio}}0</span>
+                </div>
+              </div>
+              <div class="espaco"></div>
+              <!-- Plano 2 -->
+              <div
+                class="card-planos"
+                [class.plano-selecionado]="planoSelecionado === 'anual'"
+                (click)="selecionarPlano('Anual')"
+              >
+                <h5>1 ANO DE ACESSO</h5>
+                <div class="checks">
+                  <div class="division-check" *ngFor="let item of beneficios">
+                    <img src="check.png" alt="" />
+                    <span [innerHTML]="item"></span>
+                  </div>
+                </div>
+                <div class="valores">
+                  <span class="normal">R${{ valorAntigoPlanoAnual}}0</span>
+                  <span class="promocional">R${{ valorAtualPlanoAnual}}0</span>
+                </div>             
+              <div class="espaco"></div>
+              </div>              
+            </div>
+              <span *ngIf="planoSelecionado !== ''" style="margin-top: 5px; color: white" >Plano selecionado: <b>{{planoSelecionado}}</b></span>
+              <div class="button-finalizar">
+                <div class="container-btn-finalizar" *ngIf="planoSelecionado !== ''" >               
+                  <button class="btn-style3" (click)="goToCheckout()" [disabled]="currentStep === 8"> <i class="fas fa-lock"></i> Finalizar</button>
+          
+                </div>
+              </div>
+     </div>
+        </ng-container>
+      </div>    
+      <div class="containerButtons" >
+        <div class="controls">
+            <button class="btn-style1" (click)="prevStep()" [disabled]="currentStep === 0">Voltar</button>
+            <button *ngIf="currentStep!==7" class="btn-style2" (click)="nextStep()" [disabled]="currentStep === 8">Próximo ></button>
+          </div>
+      </div>
+      <div class="espaco"></div>
+<div class="espaco"></div>
+</div>
+<div class="wrapper-preview">
+    <div class="body-preview">
+      <app-carta-preview [cartaData]="form"></app-carta-preview>
+    </div>
+</div>
+</div>
+
+<div class="espaco"></div>
+<div class="espaco"></div>
+<div class="espaco"></div>
+<div class="espaco"></div>
+<div class="espaco"></div>
+<div class="espaco"></div>
+<div class="espaco"></div>
+<app-footer></app-footer>

@@ -1,0 +1,188 @@
+<div class="top-alert">
+   
+    ❤️ 40% OFF para o Dia dos Namorados ❤️
+  </div>
+  <header>
+    <!-- Ícone do menu hambúrguer -->
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  
+    <!-- Logo central -->
+    <div class="logo">
+      <img src="logoLoveLink.png" alt="Logo" />
+    </div>
+  
+    <!-- Menu de navegação -->
+    <nav class="nav-links" id="navLinks">
+      <a href="#">Início</a>
+      <a href="#">Suporte</a>
+      <a href="#">Trabalhe Conosco</a>
+    </nav>
+  </header>
+
+<div class="checkout-container">
+
+  <div class="checkout-content" *ngIf="!registroCompleto" >
+    <div class="container-left">
+      <div class="container-resumo">
+        <button (click)="revisar()" class="btn-editar"><i class="fas fa-arrow-left"></i> Editar página</button>
+        <h2>Resumo do Pedido</h2>
+        <p>Revise a sua página antes do pagamento</p>
+          <div class="resumo">
+            <h4> <i class="fas fa-shopping-cart"></i> Página LoveLink personalizada | Plano {{planoSelecionado}}</h4>
+            <h4>R$ {{valorPlanoSelecionado}}0</h4>
+          </div>
+          <div class="total">
+            <span>Total: </span>
+            <span>R$ {{valorPlanoSelecionado}}0</span>
+          </div>
+      </div>
+      <h3>Pronto ❤️</h3>
+      <p style="margin-top: -8px;">Agora é só realizar o pagamento para receber o link e QrCode de acesso à sua nova página para surpreender quem você tanto ama !</p>
+    </div>
+    
+    <div class="container-pagamento">
+      <h2>Método de pagamento</h2>
+      <p>Escolha a melhor forma de realizar o pagamento</p>
+
+    <!-- PIX Option -->
+      <div class="payment-option">
+        <div class="option-header"  (click)="togglePix()">
+          <span><i class="fas fa-qrcode"></i> Pix</span>
+          <span [class.rotated]="pixOpen">▼</span>
+        </div>
+        <div class="option-content" *ngIf="pixOpen">
+            <form>
+            <h3>CPF</h3>
+            <input type="text" placeholder="Ex: 999.999.999-99" />
+                <h3>Nome</h3>
+            <input type="text" placeholder="Ex: Matheus ribeiro" />
+               <button class="confirm-button">Gerar QRcode PIX</button>
+          </form>
+         
+        </div>
+      </div>
+
+      <!-- Cartão Option -->
+      <div class="payment-option" >
+        <div class="option-header" (click)="toggleCartao()">
+          <span><i class="far fa-credit-card"></i>   Cartão de Crédito</span>
+          <span [class.rotated]="cartaoOpen">▼</span>
+        </div>
+        <div class="option-content" *ngIf="cartaoOpen">
+          <form (ngSubmit)="pagarCartao()" #formCartao="ngForm">
+            <h3>CPF</h3>
+            <input
+              name="identificationNumber"
+              [(ngModel)]="cardData.identificationNumber"
+              type="text"
+              placeholder="Ex: 999.999.999-99"
+              required
+            />
+
+            <h3>Email</h3>
+            <input
+              name="email"
+              [(ngModel)]="cardData.email"
+              type="email"
+              placeholder="seuemail@exemplo.com"
+              required
+            />
+
+            <h3>Nome no Cartão</h3>
+            <input
+              name="cardholderName"
+              [(ngModel)]="cardData.cardholderName"
+              type="text"
+              placeholder="Nome como está no cartão"
+              required
+            />
+
+            <h3>Número do cartão</h3>
+            <input
+              name="cardNumber"
+              [(ngModel)]="cardData.cardNumber"
+              type="text"
+              placeholder="0000 0000 0000 0000"
+              required
+            />
+
+            <h3>Validade (MM/AA)</h3>
+            <input
+              name="validade"
+              [(ngModel)]="cardData.validade"
+              type="text"
+              placeholder="MM/AA"
+              required
+            />
+
+            <h3>CVV</h3>
+            <input
+              name="securityCode"
+              [(ngModel)]="cardData.securityCode"
+              type="text"
+              placeholder="Ex: 123"
+              required
+            />
+
+            <button
+              class="confirm-button"
+              type="submit"
+              [disabled]="formCartao.invalid || carregandoRegistro"
+            >
+              <span *ngIf="!carregandoRegistro" style="color: white">
+                <i class="fas fa-lock"></i> Confirmar Pagamento
+              </span>
+              <span *ngIf="carregandoRegistro">
+                <span class="spinner"></span> Enviando...
+              </span>
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="message">
+        <p>Ao realizar o pagamento você concorda com a <a href="/inicio">Política de privacidade</a> e os <a href="/inicio">Termos de Uso</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="confirmacao" *ngIf="registroCompleto">
+    <h2>Parabéns, {{primeiroNome}} ❤️</h2>
+    <h3>Sua página personalizada está pronta e foi enviada para o seu Email.</h3>
+    <p>Agradecemos pela preferência e desejamos boa sorte com a sua surpresa!</p>
+    <i class="fa fa-check-circle" style="color: #4CAF50; font-size: 80px;"></i>
+    <p>Mais instruções foram enviadas também ao seu Email</p>
+  </div>
+</div>
+
+<div class="espaco"></div>
+<div class="espaco"></div>
+<div class="espaco"></div>
+<div class="espaco"></div>
+<div class="espaco"></div>
+<div class="espaco"></div>
+<div class="espaco"></div>
+<div class="espaco"></div>
+<footer class="footer">
+    <div class="content-footer">
+        <img src="logoLoveLink.png" class="image-logo" alt="Logo" />
+        <p>Com a LoveLink você demonstra amor em forma de página personalizada :)</p>
+        <div class="paginas">
+            <a href="">Política de privacidade</a>
+            <a href="">Termos de uso</a>
+            <a href="">Fale conosco</a>
+
+        </div>
+        <div class="redes-sociais">
+            <img src="instagram.png" alt="">
+            <a href="">Confira o nosso instagram</a>
+        </div>
+    </div>
+    <div class="copyright">
+        <span> CopyRight © 2025 - LoveLink.com</span>
+    </div>
+    
+</footer>
+<div class="rodape">
+<span>Todos os direitos reservados</span>
+</div>
+
+ 

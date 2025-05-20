@@ -1,0 +1,490 @@
+:host {
+    display: block;
+    transform: scale(0.9);
+    transform-origin: top center;
+    border: 1px solid rgb(51, 51, 51);
+    border-radius: 12px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(15, 15, 15, 0.5);
+   
+    border: 1px solid #383838;
+  
+    background: linear-gradient(to bottom, #330404, #1d0101, #0f0000, #0f0000, #0f0000, #0f0101, #120101, #0f0101, #0f0101, #0f0101, #0f0101);
+  }
+
+ 
+  
+  
+  h2 {
+    margin: 0;
+    color: #f3e5e5;
+    text-shadow: 1px 2px 1px rgba(138, 0, 0, 0.842);
+    font-family: "Italianno", cursive;
+    font-weight: 300;
+    font-size:  47px;
+}
+
+.hidden {
+    display: none;
+  }
+h3 {
+    font-family: "Italianno", cursive;
+    font-weight: 400;
+    font-size:  43px;
+    margin: 0;
+    color: rgb(255, 20, 20); 
+    margin-top: 20px;
+}
+p {
+  font-family: "Nunito Sans", sans-serif;
+    white-space: normal;
+    font-weight: 300;
+    padding: 0 15px;
+    color: white;
+    font-size: 15px
+}
+span{
+     font-family: "Roboto Slab", serif;
+    color: #e1b3b3;
+}
+
+
+  .btn-add{
+    max-height: 38px;
+    max-width: 38px;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+.body-carta{
+  
+    height: 105%;
+   
+    padding-top: 10px;
+     width: 100%;  
+
+    z-index: -1;
+}
+@media screen and (min-width: 1024px) {
+    .body-carta {
+      padding-left: 1%;
+      padding-right: 1%;
+      max-width: 500px;
+    }
+  }
+.espaco{
+    height: 30px;;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.data-base{
+    font-size: 1.2em;
+}
+.container-data {
+    background-color: #000000;
+    border-radius: 10px;
+   
+    margin: auto;
+    padding: 8px;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+
+   
+  }
+  .teste{
+    width: 100%;
+  }
+
+  @property --opacity {
+    syntax: "<number>";
+    initial-value: 0.5;
+    inherits: false;
+  }
+  
+  /* Propriedade customizada para o ângulo */
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  
+  /* Animação para alternar a opacidade do fundo */
+  @keyframes opacityChange {
+    to {
+      --opacity: 1;
+    }
+  }
+  
+  /* Animação para rotacionar o gradiente na borda */
+  @keyframes rotate {
+    to {
+      --angle: 360deg;
+    }
+  }
+
+
+.video {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    display: flex;
+    justify-content: start;
+    overflow: hidden;
+    max-width: 95%;
+    background: black;
+
+    margin: 0 auto;
+}
+
+.video iframe {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100%;
+    height: 100%;
+ 
+}
+.line{
+    height: 2px;
+    background-color: #e1b3b3;
+    width: 200px;
+    margin-top: -8px;
+}
+
+.line-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -15px;
+  }
+  
+  .line2 {
+    height: 1px;
+    background-color: #e1b3b3;
+    width: 44vh;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+  }
+  
+  .heart-dois {
+    background-color: #1a0000; /* Cor do fundo da página, para "apagar" a linha atrás do coração */
+    z-index: 2;
+    padding: 0 10px;
+    color: #e2c3c3;
+    font-size: 18px;
+  }
+
+.container-gradient{
+    background: linear-gradient(to bottom, #3a0102 , #160101);
+    height: 3vh;
+}
+.container-contador{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.container-animation{
+    position: absolute;
+}
+
+@keyframes animate
+{
+    0%{
+        top: 0px;
+        opacity: 0.3;
+        scale: 1;
+    }
+    70%{
+        top: 600px;
+        opacity: 0.3;
+    
+    }
+    80%{
+        top: 700px;
+        opacity: 0.2;
+        scale: 1;
+    }
+    100%{
+        top: 800px;
+        opacity: 0.1;
+        scale: 0;
+    }
+}
+.heart{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    filter: drop-shadow(5px 5px 10px black) drop-shadow(0px 0px 2px red);
+    animation: animate 8s linear forwards;
+}
+.heart::before{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 25px;
+    background: #c50000;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transform-origin: bottom center;
+    rotate: -45deg;
+    z-index: 1000;
+}
+.heart::after{
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 15px;
+    bottom: 0;
+    background: #c50000;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transform-origin: bottom center;
+    rotate: 315deg;
+    z-index: 100000;
+}
+.container-titulo1{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    color: white;
+}
+.container-autor{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    color: white;
+}
+.container-Mensagem{
+    width: 100%;
+    display: flex;
+    
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    color: white;
+}
+
+.container-Mensagem p {
+    margin-top: -3px;
+}
+.container-carrossel{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+}
+.container-carrossel img {
+    height: 60%;
+    width: 80%;
+    border-radius: 13px;
+    box-shadow: 0px 1px 5px rgba(255, 0, 0, 0.63);
+    animation: spin-light 2s infinite linear; 
+    opacity: 1;
+
+}
+
+.container-album {
+    display: grid;
+    grid-template: max-content;
+    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px; /* Adicionar espaçamento interno */
+}
+.container-album img{
+    height: 79px;
+    width: 77px;
+    border-radius: 5px;
+}
+
+.icon{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.container-imagemAlbum{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+h5 {
+    margin-top: 0;
+}
+
+.spotify-player {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o player na página */
+    align-items: center;
+    margin: 2px 10px; /* Espaçamento superior e inferior */
+    padding: 10px; /* Espaçamento interno */
+    border: none;
+    background: linear-gradient(135deg, #00000000, #110e0e00); /* Gradiente com as cores do Spotify */
+    border-radius: 20px; /* Borda arredondada */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra elegante */
+    max-width: 540px; /* Limita a largura */
+    width: 90%;
+  }
+
+  /* Animação de hover para o container */
+  .spotify-player:hover {
+    
+    transition: all 0.3s ease-in-out;
+  }
+
+  .spotify-player iframe{
+    height: 100px;
+  }
+
+  footer{
+    border-top: 1px solid rgb(31, 0, 0);
+    height: 55px;
+    display: flex;
+    background-color: #9b000000 ;
+  }
+
+  .container-footer{
+    width: 10%;
+    height: 55px;
+   display: flex;
+   justify-content: end;
+  }
+  .container-footer p{
+    padding: 0;
+  }
+  .container-footer1{
+    width: 80%;
+    height: 55px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   text-align: center;
+  }
+  .container-footer2{
+    width: 33%;
+    height: 55px;
+   
+
+  }
+
+  .container-footer1 img{
+    height: 34px;
+    width: auto;
+    margin-top:9px
+  }
+  .header-preview{
+    display: flex;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    justify-content: space-between;
+    height: 35px;
+    align-items: center;
+    border-radius: 12px 12px 0 0;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  
+  .header-preview p{
+    margin: 0px;
+    color: black;
+    text-align: center;
+    
+  }
+ 
+  .container-carrossel {
+    position: relative;
+    width: 100%;
+    height: 420px; /* defina a altura desejada */
+    overflow: hidden;
+  }
+  
+  .image-carrossel {
+    position: absolute;
+   
+  
+    object-fit: cover;
+  
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
+  }
+  
+  .fade {
+    animation: fadeImage 2.0s ease-in-out;
+  }
+  
+  @keyframes fadeImage {
+    from {
+      opacity: 0.3;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .video{
+    margin: 0;
+    width: 400px;
+    border: 1px solid gray;
+    border-radius: 6px;
+  }
+  .item {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 50vh;
+    width: 38vh;
+    border-radius: 10px;
+    box-shadow: 0px 1px 5px rgba(216, 0, 0, 0.63);
+    transition: all 0.5s ease-in-out;
+  }
+  @media (min-width: 1024px) and (max-width: 1366px) {
+    .item {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 69vh;
+    width: 70%;
+    border-radius: 10px;
+    box-shadow: 0px 1px 5px rgba(216, 0, 0, 0.63);
+    transition: all 0.5s ease-in-out;
+  }
+  .line2 {
+    height: 1px;
+    background-color: #e1b3b3;
+    width: 410px;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+  }
+  
+}
+
+.body-desktop{
+  
+   background-image: url('/fundo1.png');
+  background-size: 54vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: center;
+  overflow-x: hidden;
+  min-height: min-content;
+
+}

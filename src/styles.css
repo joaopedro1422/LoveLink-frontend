@@ -1,0 +1,42 @@
+
+/* You can add global styles to this file, and also import other style files */
+body{
+
+    margin: 0;
+    background-color: #0f0101;
+}
+button:hover{
+  cursor: pointer;
+}
+html, body { height: 100%; 
+  background: linear-gradient(to bottom, #440404, #1d0202, #120101, #120101, #0f0101, #0f0101, #0f0101, #0f0101);
+  background-attachment: fixed;
+  background-size: cover;
+  
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.cdk-global-scrollblock {
+    overflow: hidden !important;
+    pointer-events: auto;
+  }
+  .cdk-overlay-container {
+    overflow: hidden;
+    pointer-events: auto;
+  }
+  .mat-mdc-dialog-container .mdc-dialog .cdk-dialog-container .mdc-dialog--open{
+    max-width: 290px;
+    pointer-events: auto;
+}
+
+  
+.dark-backdrop {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+  }
+  ::ng-deep .cdk-overlay-backdrop.dark-backdrop {
+    pointer-events: auto;
+    background-color: rgba(0, 0, 0, 0.9) !important;
+  }
+  body.mat-dialog-open {
+    overflow: hidden;
+    touch-action: none; /* Bloqueia rolagem no mobile */
+  }
